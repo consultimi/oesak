@@ -6,10 +6,11 @@ from collections import defaultdict
 from spacy.lang.en.stop_words import STOP_WORDS
 import matplotlib.pyplot as plt
 from nltk import ngrams
-import textacy
 import textacy.vsm
 import itertoolz
 import wordtree
+import gensim.downloader as api
+from consultimi import TextPreprocessor
 
 default_pos = ["Noun phrases","Nouns","Verbs","Adjectives"]
 
@@ -43,6 +44,7 @@ if (color_option == "Choose one"):
 
 
 en = textacy.load_spacy_lang("en_core_web_sm", disable=())
+
 matcher = Matcher(en.vocab)
 
 if ("Noun phrases" in pos or "Nouns" in pos):
@@ -53,7 +55,9 @@ if ("Adjectives" in pos):
     matcher.add("Adjectives", [[{ "POS": "ADJ" }]])
 
 #print(keep)
-rawdocs = [str(openend).strip().lower() for openend in raw_text.split("\n")]
+
+preprocessor = TextPreprocessor()
+rawdocs = [preprocessor.preprocess(str(openend)) for openend in raw_text.split("\n")])
 corpus = textacy.Corpus(en, data=rawdocs)
 for doc in corpus:
     #openend = 
@@ -104,12 +108,12 @@ if (len(reduced_d) > 0):
     plt.axis("off")
     st.pyplot(out)
 
-    #reduced_ngrams = {k: v for k, v in ngramdict.items() if "like" in k}
+    reduced_ngrams = {k: v for k, v in ngramdict.items() if "like" in k}
 
     #rint(reduced_ngrams.keys())
-    g = wordtree.search_and_draw(corpus = rawdocs, keyword = "coffee", max_n=6)
+    #g = wordtree.search_and_draw(corpus = rawdocs, keyword = "coffee", max_n=6)
 
-    #g = wordtree.draw(ngrams = reduced_ngrams.keys(), frequencies = reduced_ngrams.values(), keyword = "like")
+    g = wordtree.draw(ngrams = reduced_ngrams.keys(), frequencies = reduced_ngrams.values(), keyword = "like")
     st.graphviz_chart(g, True)
 
 else:
