@@ -1,4 +1,7 @@
-from textacy import preprocessing.normalize, preprocessing.remove
+import textacy.preprocessing.normalize
+import textacy.preprocessing.remove
+import re
+
 replacements = {
 
 
@@ -12,7 +15,7 @@ class TextPreprocessor:
 
     def preprocess(self, text):
         out_text = text.strip().lower()
-        out_text = textacy.preprocessing.normalize.normalize_unicode(out_text, "NFKC")
+        out_text = textacy.preprocessing.normalize.normalize_unicode(text=out_text, form="NFKC")
         out_text = textacy.preprocessing.remove.remove_punctuation(out_text)
         return(out_text)
 
