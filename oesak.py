@@ -7,12 +7,12 @@ from spacy.lang.en.stop_words import STOP_WORDS
 import matplotlib.pyplot as plt
 from nltk import ngrams
 import textacy.vsm
-import cwordtree
 from consultimi.preprocessor import TextPreprocessor
 import pandas as pd
 import graphviz as gv
-import streamlit.components.v1 as components
 
+import streamlit.components.v1 as components
+from gchart import gchart
 
 TOP_N_TO_SHOW_WC_SUGGESTIONS = 10
 
@@ -126,7 +126,9 @@ with st.beta_expander("Word Tree"):
     #reduced_ngrams = {k: v for k, v in ngramdict.items() if "like" in k}
 
     #rint(reduced_ngrams.keys())
-    g = cwordtree.search_and_draw(corpus = texts, keyword = chosen_keyword, max_n=3, min_font_size=16, max_font_size=48)
+    textsout = [["Phrases"]] + [[a] for a in texts]
+    print(textsout)
+    gchart(key="cat_chart", data=textsout, chartType="WordTree", width='500px', height='300px', wordtree={"format": "implicit", "word": "sapphires"})
 
     #g = wordtree.draw(ngrams = reduced_ngrams.keys(), frequencies = reduced_ngrams.values(), keyword = "like")
     #st.graphviz_chart(g.source, True)
