@@ -7,7 +7,6 @@ replacements = {
 
 }
 
-# "Heavily inspired" https://github.com/cbaziotis/ekphrasis/blob/master/ekphrasis/classes/preprocessor.py
 
 class TextPreprocessor:
     def __init__(self, **kwargs):
@@ -15,6 +14,7 @@ class TextPreprocessor:
 
     def preprocess(self, text):
         out_text = text.strip().lower()
+        out_text = self.unpack_contractions(out_text)
         out_text = textacy.preprocessing.normalize.normalize_unicode(text=out_text, form="NFKC")
         out_text = textacy.preprocessing.remove.remove_punctuation(out_text)
         return(out_text)

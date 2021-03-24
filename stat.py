@@ -50,7 +50,7 @@ keep = None
 stop_words = STOP_WORDS
 
 st.set_page_config(layout="wide")
-st.sidebar.header('Open-End Swiss Army Knife')
+st.sidebar.header('Short Text Analysis Toolkit')
 
 pos = st.sidebar.multiselect('Keep', default_pos, default=default_pos)
 
@@ -128,7 +128,7 @@ with st.beta_expander("Word Tree"):
     #rint(reduced_ngrams.keys())
     textsout = [["Phrases"]] + [[a] for a in texts]
     print(textsout)
-    gchart(key="cat_chart", data=textsout, chartType="WordTree", width='500px', height='300px', wordtree={"format": "implicit", "word": "sapphires"})
+    gchart(key="cat_chart", data=textsout, chartType="WordTree", width='500px', height='300px', wordtree={"format": "implicit", "word": "sapphires", "type": "double"})
 
     #g = wordtree.draw(ngrams = reduced_ngrams.keys(), frequencies = reduced_ngrams.values(), keyword = "like")
     #st.graphviz_chart(g.source, True)
