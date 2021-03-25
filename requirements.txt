@@ -1,0 +1,7 @@
+streamlit_gchart==0.1.2
+streamlit_wordcloud==0.1.0
+pandas==1.2.2
+streamlit==0.79.0
+spacy==2.3.5
+textacy==0.10.1
+gchart==0.0.2
