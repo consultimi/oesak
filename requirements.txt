@@ -1,6 +1,6 @@
 streamlit==0.79.0
 streamlit_gchart==0.1.8
-spacy==2.3.5
+spacy==2.3.5 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.3.1/en_core_web_sm-2.3.1.tar.gz#egg=en_core_web_sm
 textacy==0.10.1
 pandas==1.2.2
 streamlit_wordcloud==0.1.0
